@@ -82,6 +82,7 @@ if st.button("サンプルデータを読む"):
 
     if sample_data is not None:
         st.success("サンプルが正常に読み込まれました!")
+        st.sidebar.dataframe(sample_data)
     else:
         st.error("サンプルの読み込みに失敗しました。")
 
