@@ -71,6 +71,11 @@ def load_sample_data():
 st.set_page_config(page_title="Balencer Pandas", page_icon="🐼")
 st.title("Balencer 🐼 Pandas")
 
+
+if "messages" not in st.session_state:
+    st.session['df'] = ''
+
+
 uploaded_file = st.file_uploader(
     "ファイルをアップロード",
     type=list(file_formats.keys()),
@@ -80,7 +85,8 @@ uploaded_file = st.file_uploader(
 
 # Use Streamlit to create a button to load the sample data
 if st.button("サンプルデータを読む"):
-    df = load_sample_data()
+    st.session.df = load_sample_data()
+    df = st.session.df
 
     if df is not None:
         st.success("正常に読み込まれました!")
