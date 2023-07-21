@@ -71,10 +71,11 @@ uploaded_file = st.file_uploader(
 
 if uploaded_file:
     df = load_data(uploaded_file)
+    st.sidebar.dataframe(df)
 
 openai_api_key = os.environ['OPENAI_API_KEY']
 if "messages" not in st.session_state or st.sidebar.button("チャット履歴を消す"):
-    st.session_state["messages"] = [{"role": "assistant", "content": "データについてなんでも聞いてくださいね！"}]
+    st.session_state["messages"] = [{"role": "assistant", "content": "データをアップして質問をしてください。"}]
 
 for msg in st.session_state.messages:
     st.chat_message(msg["role"]).write(msg["content"])
