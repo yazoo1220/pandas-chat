@@ -73,7 +73,7 @@ st.title("Balencer 🐼 Pandas")
 
 
 if "messages" not in st.session_state:
-    st.session['df'] = ''
+    st.session_state['df'] = ''
 
 
 uploaded_file = st.file_uploader(
@@ -85,7 +85,7 @@ uploaded_file = st.file_uploader(
 
 # Use Streamlit to create a button to load the sample data
 if st.button("サンプルデータを読む"):
-    st.session.df = load_sample_data()
+    st.session_state.df = load_sample_data()
     df = st.session.df
 
     if df is not None:
