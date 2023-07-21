@@ -1,4 +1,4 @@
-from langchain.agents import initialize_agent, AgentType
+wefrom langchain.agents import initialize_agent, AgentType
 from langchain.agents import create_pandas_dataframe_agent
 from langchain.callbacks import StreamlitCallbackHandler
 from langchain.chat_models import ChatOpenAI
@@ -72,9 +72,8 @@ st.set_page_config(page_title="Balencer Pandas", page_icon="🐼")
 st.title("Balencer 🐼 Pandas")
 
 
-if "messages" not in st.session_state:
-    st.session_state['df'] = ''
-
+df = load_sample_data()
+st.sidebar.dataframe(df)
 
 uploaded_file = st.file_uploader(
     "ファイルをアップロード",
@@ -82,17 +81,6 @@ uploaded_file = st.file_uploader(
     help="Various File formats are Support",
     on_change=clear_submit,
 )
-
-# Use Streamlit to create a button to load the sample data
-if st.button("サンプルデータを読む"):
-    st.session_state.df = load_sample_data()
-    df = st.session_state.df
-
-    if df is not None:
-        st.success("正常に読み込まれました!")
-        st.sidebar.dataframe(df)
-    else:
-        st.error("読み込みに失敗しました。")
 
 if uploaded_file:
     df = load_data(uploaded_file)
