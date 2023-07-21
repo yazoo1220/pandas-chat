@@ -3,3 +3,4 @@ openai
 tiktoken
 pandas
 streamlit
+tabulate
