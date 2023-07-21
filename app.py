@@ -59,25 +59,12 @@ def load_data(uploaded_file):
         st.error(f"Unsupported file format: {ext}")
         return None
 
-@st.cache_data(ttl="2h")
 def load_sample_data():
     # Define the path to the sample data file
     sample_data_path = "./sample_data.csv"
-
     # Load the sample data using the appropriate file format function (assuming it's CSV)
     sample_data = pd.read_csv(sample_data_path)
-
     return sample_data
-
-# Use Streamlit to create a button to load the sample data
-if st.button("サンプルデータを読む"):
-    sample_data = load_sample_data()
-
-    if sample_data is not None:
-        st.success("サンプルが正常に読み込まれました!")
-    else:
-        st.error("サンプルの読み込みに失敗しました。")
-
 
 st.set_page_config(page_title="Balencer Pandas", page_icon="🐼")
 st.title("Balencer 🐼 Pandas")
@@ -88,6 +75,15 @@ uploaded_file = st.file_uploader(
     help="Various File formats are Support",
     on_change=clear_submit,
 )
+
+# Use Streamlit to create a button to load the sample data
+if st.button("サンプルデータを読む"):
+    sample_data = load_sample_data()
+
+    if sample_data is not None:
+        st.success("サンプルが正常に読み込まれました!")
+    else:
+        st.error("サンプルの読み込みに失敗しました。")
 
 if uploaded_file:
     df = load_data(uploaded_file)
