@@ -86,7 +86,7 @@ uploaded_file = st.file_uploader(
 # Use Streamlit to create a button to load the sample data
 if st.button("サンプルデータを読む"):
     st.session_state.df = load_sample_data()
-    df = st.session.df
+    df = st.session_state.df
 
     if df is not None:
         st.success("正常に読み込まれました!")
