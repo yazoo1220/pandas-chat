@@ -74,12 +74,12 @@ if uploaded_file:
 
 openai_api_key = os.environ['OPENAI_API_KEY']
 if "messages" not in st.session_state or st.sidebar.button("チャット履歴を消す"):
-    st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
+    st.session_state["messages"] = [{"role": "assistant", "content": "データについてなんでも聞いてくださいね！"}]
 
 for msg in st.session_state.messages:
     st.chat_message(msg["role"]).write(msg["content"])
 
-if prompt := st.chat_input(placeholder="何についてのデータか説明してください"):
+if prompt := st.chat_input(placeholder="データの概要を説明してください"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
 
