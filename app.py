@@ -100,6 +100,7 @@ for msg in st.session_state.messages:
 if prompt := st.chat_input(placeholder="データの概要を説明してください"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
+    st.sidebar.dataframe(df)
 
     if not openai_api_key:
         st.info("Please add your OpenAI API key to continue.")
