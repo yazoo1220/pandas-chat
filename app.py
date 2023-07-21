@@ -52,11 +52,31 @@ def load_data(uploaded_file):
         ext = os.path.splitext(uploaded_file.name)[1][1:].lower()
     except:
         ext = uploaded_file.split(".")[-1]
+    
     if ext in file_formats:
         return file_formats[ext](uploaded_file)
     else:
         st.error(f"Unsupported file format: {ext}")
         return None
+
+@st.cache_data(ttl="2h")
+def load_sample_data():
+    # Define the path to the sample data file
+    sample_data_path = "./sample_data.csv"
+
+    # Load the sample data using the appropriate file format function (assuming it's CSV)
+    sample_data = pd.read_csv(sample_data_path)
+
+    return sample_data
+
+# Use Streamlit to create a button to load the sample data
+if st.button("サンプルデータを読む"):
+    sample_data = load_sample_data()
+
+    if sample_data is not None:
+        st.success("サンプルが正常に読み込まれました!")
+    else:
+        st.error("サンプルの読み込みに失敗しました。")
 
 
 st.set_page_config(page_title="Balencer Pandas", page_icon="🐼")
