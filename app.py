@@ -78,11 +78,11 @@ uploaded_file = st.file_uploader(
 
 # Use Streamlit to create a button to load the sample data
 if st.button("サンプルデータを読む"):
-    sample_data = load_sample_data()
+    df = load_sample_data()
 
     if sample_data is not None:
         st.success("サンプルが正常に読み込まれました!")
-        st.sidebar.dataframe(sample_data)
+        st.sidebar.dataframe(df)
     else:
         st.error("サンプルの読み込みに失敗しました。")
 
